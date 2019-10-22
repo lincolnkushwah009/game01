@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import './components/dashboard.dart';
+import 'json_user.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'dart:async';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login';
@@ -7,6 +12,59 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginState extends State<LoginPage> {
+  static var uri = "http://192.168.1.21:3000";
+  static BaseOptions options = BaseOptions(
+      baseUrl: uri,
+      responseType: ResponseType.plain,
+      connectTimeout: 30000,
+      receiveTimeout: 30000,
+      validateStatus: (code) {
+        if (code >= 200) {
+          return true;
+        }
+      });
+
+  static Dio dio = Dio(options);
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  TextEditingController _nameController=TextEditingController();
+
+  TextEditingController _emailController = TextEditingController();
+
+  TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  Future<dynamic> _loginUser(String name,String email, String password) async {
+    try {
+      Options options = Options(
+//        contentType: ContentType.parse('application/json'),
+      );
+
+      Response response = await dio.post('/trivia/users/login',
+          data: {"name":name,"email": email, "password": password}, options: options);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var responseJson = json.decode(response.data);
+        return responseJson;
+      } else if (response.statusCode == 401) {
+        throw Exception("Incorrect Email/Password");
+      } else
+        throw Exception('Authentication Error');
+    } on DioError catch (exception) {
+      if (exception == null ||
+          exception.toString().contains('SocketException')) {
+        throw Exception("Network Error");
+      } else if (exception.type == DioErrorType.RECEIVE_TIMEOUT ||
+          exception.type == DioErrorType.CONNECT_TIMEOUT) {
+        throw Exception(
+            "Could'nt connect, please ensure you have a stable network.");
+      } else {
+        return null;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +102,7 @@ class _LoginState extends State<LoginPage> {
               child: Column(
                 children: <Widget>[
                   TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                         labelText: 'EMAIL',
                         labelStyle: TextStyle(
@@ -55,6 +114,7 @@ class _LoginState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20.0),
                   TextField(
+                    controller: _passwordController,
                     decoration: InputDecoration(
                         labelText: 'PASSWORD',
                         labelStyle: TextStyle(
@@ -82,8 +142,20 @@ class _LoginState extends State<LoginPage> {
                   ),
                   SizedBox(height: 40.0),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed("/dashboard");
+                    onTap: () async{
+                      setState(() =>_isLoading = true);
+                      var res = await _loginUser(
+                          _nameController.text,_emailController.text,_passwordController.text
+                      );
+                      setState(()=> _isLoading=false);
+
+                      JsonUser user = JsonUser.fromJson(res);
+
+                      if(user !=null){
+                        Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new Dashboard()));
+                      }else{
+                        Scaffold.of(context).showSnackBar(SnackBar(content: Text("incorrect email")));
+                      }
                     },
                     child: Container(
                       height: 40.0,
