@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/painting.dart';
 import '../components/categories.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Dashboard extends StatefulWidget {
   static const routeName = '/dashboard';
@@ -13,7 +15,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     var scafold = Scaffold(
-      backgroundColor: Color.fromRGBO(75, 0, 180, 100),
+      backgroundColor: Color.fromRGBO(50, 0, 74, 100),
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Row(
@@ -29,33 +31,46 @@ class _DashboardState extends State<Dashboard> {
       body: ListView(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(border: Border.all(color: Colors.green)),
+
+
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+
             child: SizedBox(
+
+
                 height: 200.0,
                 width: 300.0,
-                child: Carousel(
-                  images: [
-                    NetworkImage(
-                        'https://cdn3.movieweb.com/i/article/evkgjS87YJyxAttm7AW0s2V6c6Wqj5/738:50/How-To-Train-Your-Dragon-3-Movie-Review.jpg'),
-                    NetworkImage(
-                        'https://images7.alphacoders.com/994/994868.jpg'),
-                    NetworkImage(
-                        'http://freefiremobile-a.akamaihd.net/ffwebsite/images/wallpaper/pop/067.jpg'),
-                    NetworkImage(
-                        'http://freefiremobile-a.akamaihd.net/ffwebsite/images/wallpaper/pop/019.jpg'),
-                    NetworkImage(
-                        'http://freefiremobile-a.akamaihd.net/ffwebsite/images/wallpaper/pop/004.jpg'),
-                    ExactAssetImage("assets/game_img/game03.png")
-                  ],
+                child: Container(
+                  decoration: BoxDecoration(border: Border.all(color: Colors.green)),
+                  child: Carousel(
+
+                    images: [
+                      NetworkImage(
+                          'https://cdn3.movieweb.com/i/article/evkgjS87YJyxAttm7AW0s2V6c6Wqj5/738:50/How-To-Train-Your-Dragon-3-Movie-Review.jpg'),
+                      NetworkImage(
+                          'https://images7.alphacoders.com/994/994868.jpg'),
+                      NetworkImage(
+                          'http://freefiremobile-a.akamaihd.net/ffwebsite/images/wallpaper/pop/067.jpg'),
+                      NetworkImage(
+                          'http://freefiremobile-a.akamaihd.net/ffwebsite/images/wallpaper/pop/019.jpg'),
+                      NetworkImage(
+                          'http://freefiremobile-a.akamaihd.net/ffwebsite/images/wallpaper/pop/004.jpg'),
+                      ExactAssetImage("assets/game_img/game03.png")
+                    ],
+                  ),
                 )),
           ),
           SizedBox(
-            height: 20,
+            height: 40,
+          ),
+          Container(
+            child: SpinKitWave(color: Colors.red, type: SpinKitWaveType.start),
+
           ),
 
-//
-          Container(
-              height: 175.0,
+          Container(color:Color.fromRGBO(67, 0, 100, 100),
+              padding:EdgeInsets.fromLTRB(0, 25, 0, 25),
+              height: 180.0,
               child: ListView(
                 padding: EdgeInsets.only(left: 15.0, right: 15.0),
                 scrollDirection: Axis.horizontal,
