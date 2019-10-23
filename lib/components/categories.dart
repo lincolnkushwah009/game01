@@ -1,8 +1,31 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class Categories extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class Categories extends StatefulWidget {
   static const routeName = '/categories';
-  final List<Widget> categoryList = [];
+   _HomePageState createState() => _HomePageState();
+ }
+class _HomePageState extends State<Categories> {
+  List categoryList;
+  Map data;
+
+  getQuestions() async {
+     http.Response response =
+         await http.get('http://192.168.1.21:3000/trivia/get/category');
+     data = json.decode(response.body);
+     setState(() {
+       categoryList = data['category'];
+     });
+     debugPrint(response.body);
+   }
+
+   @override
+   void initState() {
+     super.initState();
+     getQuestions();
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +37,12 @@ class Categories extends StatelessWidget {
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount:23,
-        itemBuilder:(context,i){
+        itemCount: categoryList == null ? 0 : categoryList.length,
+
+        itemBuilder: (BuildContext context, int index){
+          print("categoryyy");
+          print(categoryList);
+
           return Container(
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
@@ -37,13 +64,16 @@ class Categories extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Text(
-                  'Item $i',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                      "${categoryList[index]["name"]}",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
               ]),
             ),
-          );;
+          );
         } ,
       ),
     );
