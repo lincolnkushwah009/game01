@@ -15,16 +15,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: LoginPage.routeName,
       routes: <String, WidgetBuilder>{
-        LoginPage.routeName:(BuildContext context)=>LoginPage(),
-        SignupPage.routeName:(BuildContext context) =>SignupPage(),
-        Dashboard.routeName:(BuildContext context) =>Dashboard(),
-        Categories.routeName:(BuildContext context)=>Categories(),
-        Profile.routeName:(BuildContext context)=>Profile(),
-        PlayScreen.routeName:(BuildContext context)=>PlayScreen(),
-        UserAccountDetail.routeName:(BuildContext context)=>UserAccountDetail()
+        LoginPage.routeName: (BuildContext context) => LoginPage(),
+        SignupPage.routeName: (BuildContext context) => SignupPage(),
+        Dashboard.routeName: (BuildContext context) => Dashboard(),
+        Categories.routeName: (BuildContext context) => Categories(),
+        Profile.routeName: (BuildContext context) => Profile(),
+        PlayScreen.routeName: (BuildContext context) => PlayScreen(),
+        UserAccountDetail.routeName: (BuildContext context) =>
+            UserAccountDetail()
       },
-      home:MyHomePage(),
+      home: MyHomePage(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(color: Colors.black),
+          scaffoldBackgroundColor: Color.fromRGBO(75, 0, 180, 100),
+          textTheme: TextTheme(
+              title: TextStyle(color: Colors.white),
+              body1: TextStyle(color: Colors.white))),
     );
   }
 }
@@ -37,9 +44,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body:LoginPage()
-    );
+    return Scaffold(resizeToAvoidBottomPadding: false, body: LoginPage());
   }
 }

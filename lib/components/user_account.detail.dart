@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+
 class UserAccountDetail extends StatelessWidget {
-  static const routeName = "/userAccountDetail";
+  static const routeName = "/UserAccountDetail";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Account Details'),
+          title: Text('UserAccountDetail'),
         ),
         body: SingleChildScrollView(
           child: Column(children: [
@@ -28,11 +29,19 @@ class UserAccountDetail extends StatelessWidget {
                         "George.Micheal",
                         style: TextStyle(color: Colors.white),
                       ),
-                      trailing: IconButton(
-                        onPressed: (){
-                          
-                        },
-                        icon: Icon(Icons.add),
+                      trailing: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                          color: Colors.white, 
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed(UserAccountDetail.routeName);
+                          },
+                          icon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blue,
+                          ),
+                        ),
                       ),
                     )),
               ),
@@ -44,7 +53,7 @@ class UserAccountDetail extends StatelessWidget {
                 child: Card(
                     elevation: 5,
                     color: Colors.blue,
-                    margin: EdgeInsets.only(top: 5),
+                    margin: EdgeInsets.only(top: 5,bottom: 5),
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,7 +77,7 @@ class UserAccountDetail extends StatelessWidget {
               child: Column(
                 children: List.generate(4, (index) {
                   return Card(
-                    margin: EdgeInsets.all(0),
+                    margin: EdgeInsets.only(left: 5,right: 5,bottom: 2),
                     child: ListTile(
                       leading: CircleAvatar(),
                       title: Text("data"),
@@ -79,12 +88,12 @@ class UserAccountDetail extends StatelessWidget {
                 }),
               ),
             ),
-            Divider(thickness: 1.0,),
+            Divider(height: 2,),
             Container(
               child: Column(
                 children: List.generate(4, (index) {
                   return Card(
-                    margin: EdgeInsets.all(0),
+                    margin: EdgeInsets.only(left: 5,right: 5,bottom: 2),
                     child: ListTile(
                       leading: CircleAvatar(),
                       title: Text("data"),
