@@ -48,7 +48,6 @@
 //  }
 //}
 
-
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -56,25 +55,24 @@ import '../components/play_screen.dart';
 
 import 'dart:convert';
 
-
-class Category extends StatefulWidget{
-
+class Categories extends StatefulWidget {
   static const routeName = '/categories';
-  _HomePageState createState()=>_HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
-class _HomePageState extends State<Category>{
+
+class _HomePageState extends State<Categories> {
   Map data;
   List questionData;
 
-  getQuestions()async{
-    http.Response response=await http.get('http://192.168.1.21:3000/trivia/get/category');
-    data=json.decode(response.body);
+  getQuestions() async {
+    http.Response response =
+        await http.get('http://192.168.1.21:3000/trivia/get/category');
+    data = json.decode(response.body);
     setState(() {
-      questionData=data['category'];
+      questionData = data['category'];
     });
     debugPrint(response.body);
   }
-
 
   @override
   void initState() {
@@ -91,30 +89,28 @@ class _HomePageState extends State<Category>{
         backgroundColor: Colors.black,
       ),
       body: ListView.builder(
-
-
         itemCount: questionData == null ? 0 : questionData.length,
-        itemBuilder: (BuildContext context,int index){
-
+        itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.of(context).pushNamed(PlayScreen.routeName);
             },
             child: Container(
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  border:Border.all(color:Colors.yellow)),
+                  border: Border.all(color: Colors.yellow)),
               child: Card(
                 margin: EdgeInsets.all(0),
                 color: Color.fromRGBO(31, 0, 65, 100),
                 elevation: 8,
-                child:Padding(
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-
                     children: <Widget>[
-                      SizedBox(height: 30,),
+                      SizedBox(
+                        height: 30,
+                      ),
                       Icon(
                         Icons.graphic_eq,
                         color: Colors.white,
@@ -125,7 +121,13 @@ class _HomePageState extends State<Category>{
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text("${questionData[index]["name"]}",style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w500,color:Colors.white ),),
+                        child: Text(
+                          "${questionData[index]["name"]}",
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
                       )
                     ],
                   ),
@@ -134,7 +136,6 @@ class _HomePageState extends State<Category>{
             ),
           );
         },
-
       ),
     );
   }

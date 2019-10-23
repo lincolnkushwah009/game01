@@ -15,17 +15,17 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    var scafold = Scaffold(
+    return Scaffold(
       backgroundColor: Color.fromRGBO(50, 0, 74, 100),
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Row(
           children: <Widget>[
-            GestureDetector(child: CircleAvatar(),
-              onTap:() {
+            GestureDetector(
+              child: CircleAvatar(),
+              onTap: () {
                 Navigator.of(context).pushNamed(Profile.routeName);
               },
-
             ),
             SizedBox(
               width: 5,
@@ -116,7 +116,7 @@ class _DashboardState extends State<Dashboard> {
                         style: TextStyle(color: Colors.white, fontSize: 25),
                       ))),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(Category.routeName);
+                    Navigator.of(context).pushNamed(Categories.routeName);
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20.0))),
@@ -125,7 +125,5 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
     );
-
-    return MaterialApp(home: scafold);
   }
 }

@@ -1,37 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_login/components/play_screen.dart';
 import './components/categories.dart';
 import './components/dashboard.dart';
-//import 'package:flutter/services.dart';
-import 'components/profile.dart';
+import './components/profile.dart';
+import './components/play_screen.dart';
+import './components/user_account.detail.dart';
 import './signup.dart';
 import './login.dart';
 
-
-
 void main() => runApp(MyApp());
-
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       initialRoute: LoginPage.routeName,
       routes: <String, WidgetBuilder>{
-        LoginPage.routeName:(BuildContext context)=>new LoginPage(),
-        SignupPage.routeName: (BuildContext context) => new SignupPage(),
-        Dashboard.routeName: (BuildContext context) => new Dashboard(),
-        Category.routeName:(BuildContext context)=>new Category(),
+        LoginPage.routeName:(BuildContext context)=>LoginPage(),
+        SignupPage.routeName:(BuildContext context) =>SignupPage(),
+        Dashboard.routeName:(BuildContext context) =>Dashboard(),
+        Categories.routeName:(BuildContext context)=>Categories(),
         Profile.routeName:(BuildContext context)=>Profile(),
-        PlayScreen.routeName:(BuildContext context)=>PlayScreen()
+        PlayScreen.routeName:(BuildContext context)=>PlayScreen(),
+        UserAccountDetail.routeName:(BuildContext context)=>UserAccountDetail()
       },
-      home: new MyHomePage(),
+      home:MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -39,7 +35,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

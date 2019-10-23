@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:email_validator/email_validator.dart';
 import 'json_user.dart';
@@ -16,7 +15,6 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
 
-
   static var uri = "http://192.168.1.21:3000";
 
   static BaseOptions options = BaseOptions(
@@ -28,26 +26,28 @@ class _SignupPageState extends State<SignupPage> {
         if (code >= 200) {
           return true;
         }
+        return false;
       });
   static Dio dio = Dio(options);
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  TextEditingController _nameController=TextEditingController();
+  TextEditingController _nameController = TextEditingController();
 
   TextEditingController _emailController = TextEditingController();
 
   TextEditingController _passwordController = TextEditingController();
-  bool _isLoading = false;
+  bool isLoading = false;
 
-  Future<dynamic> _loginUser(String name,String email, String password) async {
+  Future<dynamic> _loginUser(String name, String email, String password) async {
     try {
       Options options = Options(
 //        contentType: ContentType.parse('application/json'),
-      );
+          );
 
       Response response = await dio.post('/trivia/users/signup',
-          data: {"name":name,"email": email, "password": password}, options: options);
+          data: {"name": name, "email": email, "password": password},
+          options: options);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var responseJson = json.decode(response.data);
@@ -85,7 +85,7 @@ class _SignupPageState extends State<SignupPage> {
                   child: Text(
                     'Signup',
                     style:
-                    TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
@@ -102,15 +102,15 @@ class _SignupPageState extends State<SignupPage> {
             ),
           ),
           Form(
-           key: _formKey,
+            key: _formKey,
             child: Container(
                 padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                 child: Column(
                   children: <Widget>[
                     TextFormField(
                       controller: _nameController,
-                      validator: (value){
-                        if(value.isEmpty){
+                      validator: (value) {
+                        if (value.isEmpty) {
                           return 'please enter some text';
                         }
                         return null;
@@ -127,16 +127,14 @@ class _SignupPageState extends State<SignupPage> {
                               borderSide: BorderSide(color: Colors.green))),
                     ),
                     SizedBox(height: 10.0),
-
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: _emailController,
-                      validator: (val)=>!EmailValidator.validate(val,true)
-                          ?'please provide a valid email'
-                          :null,
+                      validator: (val) => !EmailValidator.validate(val, true)
+                          ? 'please provide a valid email'
+                          : null,
                       decoration: InputDecoration(
                           labelText: 'EMAIL ',
-
                           labelStyle: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
@@ -147,9 +145,8 @@ class _SignupPageState extends State<SignupPage> {
                     SizedBox(height: 10.0),
                     TextFormField(
                       controller: _passwordController,
-                      validator: (val)=>val.length<8
-                          ?'your password is too short'
-                          :null,
+                      validator: (val) =>
+                          val.length < 8 ? 'your password is too short' : null,
                       decoration: InputDecoration(
                           labelText: 'PASSWORD ',
                           labelStyle: TextStyle(
@@ -160,8 +157,6 @@ class _SignupPageState extends State<SignupPage> {
                               borderSide: BorderSide(color: Colors.green))),
                       obscureText: true,
                     ),
-
-
                     SizedBox(height: 50.0),
                     Container(
                         height: 40.0,
@@ -171,24 +166,27 @@ class _SignupPageState extends State<SignupPage> {
                           color: Colors.green,
                           elevation: 7.0,
                           child: GestureDetector(
-                            onTap: ()async {
-                              if(_formKey.currentState.validate()) {
-                                setState(() => _isLoading = true);
+                            onTap: () async {
+                              if (_formKey.currentState.validate()) {
+                                setState(() => isLoading = true);
                                 var res = await _loginUser(
-                                    _nameController.text, _emailController.text,
-                                    _passwordController.text
-                                );
-                                setState(() => _isLoading = false);
+                                    _nameController.text,
+                                    _emailController.text,
+                                    _passwordController.text);
+                                setState(() => isLoading = false);
 
                                 JsonUser user = JsonUser.fromJson(res);
 
-                                if(user !=null){
-                                  Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new LoginPage()));
-                                }else{
-                                  Scaffold.of(context).showSnackBar(SnackBar(content: Text("incorrect email")));
+                                if (user != null) {
+                                  Navigator.of(context).push(
+                                      new MaterialPageRoute(
+                                          builder: (context) =>
+                                              new LoginPage()));
+                                } else {
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text("incorrect email")));
                                 }
-                              };
-
+                              }
                             },
                             child: Center(
                               child: Text(
@@ -218,7 +216,7 @@ class _SignupPageState extends State<SignupPage> {
                           children: <Widget>[
                             Center(
                               child:
-                              ImageIcon(AssetImage('assets/facebook.png')),
+                                  ImageIcon(AssetImage('assets/facebook.png')),
                             ),
                             SizedBox(width: 10.0),
                             Center(
@@ -247,8 +245,7 @@ class _SignupPageState extends State<SignupPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Center(
-                              child:
-                              ImageIcon(AssetImage('assets/google.png')),
+                              child: ImageIcon(AssetImage('assets/google.png')),
                             ),
                             SizedBox(width: 10.0),
                             Center(
@@ -275,27 +272,20 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.circular(20.0)),
                         child: InkWell(
                           onTap: () {
-                            Navigator.of(context).pop('./main.dart');},
-
-                          child:Center(
+                            Navigator.of(context).pop('./main.dart');
+                          },
+                          child: Center(
                             child: Text('Go Back',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Montserrat')),
                           ),
-
-
                         ),
                       ),
                     ),
-
                   ],
                 )),
           ),
-
-        ]
-        )
-    );
+        ]));
   }
 }
-

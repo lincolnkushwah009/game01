@@ -12,46 +12,46 @@ class _PlayScreenState extends State<PlayScreen> {
     {
       'question': 'Who\'s Yours Favoirte Animal.',
       'ans': [
-        {'point': 12,'ans':'Elephant'},
-        {'point': 34,'ans':'Tiger'},
-        {'point': 45,'ans':'Dog'},
-        {'point': 78,'ans':'Cat'}
+        {'point': 12, 'ans': 'Elephant'},
+        {'point': 34, 'ans': 'Tiger'},
+        {'point': 45, 'ans': 'Dog'},
+        {'point': 78, 'ans': 'Cat'}
       ]
     },
     {
       'question': 'Who\'s Yours Favoirte Season.',
       'ans': [
-        {'point': 12,'ans':'Rainy'},
-        {'point': 34,'ans':'Summer'},
-        {'point': 45,'ans':'Winter'},
-        {'point': 78,'ans':'Spring'}
+        {'point': 12, 'ans': 'Rainy'},
+        {'point': 34, 'ans': 'Summer'},
+        {'point': 45, 'ans': 'Winter'},
+        {'point': 78, 'ans': 'Spring'}
       ]
     },
     {
       'question': 'What\'s Yours Favoirte Job.',
       'ans': [
-        {'point': 12,'ans':'Backend Developer'},
-        {'point': 34,'ans':'frontend Developer'},
-        {'point': 45,'ans':'FullStack Developer'},
-        {'point': 78,'ans':'BlockChain Developer'}
+        {'point': 12, 'ans': 'Backend Developer'},
+        {'point': 34, 'ans': 'frontend Developer'},
+        {'point': 45, 'ans': 'FullStack Developer'},
+        {'point': 78, 'ans': 'BlockChain Developer'}
       ]
     },
     {
       'question': 'Who\'s Yours Favoirte Programing Language.',
       'ans': [
-        {'point': 12,'ans':'C'},
-        {'point': 34,'ans':'C++'},
-        {'point': 45,'ans':'JAVA'},
-        {'point': 78,'ans':'Python'}
+        {'point': 12, 'ans': 'C'},
+        {'point': 34, 'ans': 'C++'},
+        {'point': 45, 'ans': 'JAVA'},
+        {'point': 78, 'ans': 'Python'}
       ]
     },
     {
       'question': 'Who\'s Your Favoirte OS',
       'ans': [
-        {'point': 12,'ans':'IOS'},
-        {'point': 34,'ans':'Android'},
-        {'point': 45,'ans':'Linux'},
-        {'point': 78,'ans':'Flusy'}
+        {'point': 12, 'ans': 'IOS'},
+        {'point': 34, 'ans': 'Android'},
+        {'point': 45, 'ans': 'Linux'},
+        {'point': 78, 'ans': 'Flusy'}
       ]
     },
   ];
@@ -126,13 +126,15 @@ class _PlayScreenState extends State<PlayScreen> {
                     "You Did It. Your Total Point is " + total.toString(),
                     style: TextStyle(fontSize: 20),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   RaisedButton(
                     color: Colors.blue,
                     onPressed: () {
                       setState(() {
-                         total=0;
-                      _selectedQuestion=0;
+                        total = 0;
+                        _selectedQuestion = 0;
                       });
                     },
                     child: Container(
@@ -141,7 +143,7 @@ class _PlayScreenState extends State<PlayScreen> {
                       child: Center(
                         child: Text(
                           "Play Again!",
-                          style: TextStyle(fontSize: 20,color: Colors.white),
+                          style: TextStyle(fontSize: 20, color: Colors.white),
                         ),
                       ),
                     ),
