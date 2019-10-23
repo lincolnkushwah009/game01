@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_login/components/timer.dart';
 
 class PlayScreen extends StatefulWidget {
   static const routeName = "/playScreen";
@@ -6,7 +9,7 @@ class PlayScreen extends StatefulWidget {
   _PlayScreenState createState() => _PlayScreenState();
 }
 
-class _PlayScreenState extends State<PlayScreen> {
+class _PlayScreenState extends State<PlayScreen> with TickerProviderStateMixin {
   int total = 0;
   List<dynamic> _question = [
     {
@@ -37,7 +40,8 @@ class _PlayScreenState extends State<PlayScreen> {
       ]
     },
     {
-      'question': 'Who\'s Yours Favoirte Programing Language.',
+      'question':
+          'Who\'s Yours Favoirte Programing Language.zxczxczxczxczxczxczxzxczxczxcxzcxzc',
       'ans': [
         {'point': 12, 'ans': 'C'},
         {'point': 34, 'ans': 'C++'},
@@ -56,6 +60,16 @@ class _PlayScreenState extends State<PlayScreen> {
     },
   ];
   int _selectedQuestion = 0;
+  AnimationController controller;
+
+
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 5),
+    );
+  }
 
   void setTotal(int point) {
     total += point;
@@ -75,13 +89,12 @@ class _PlayScreenState extends State<PlayScreen> {
             });
           },
           child: Container(
+            alignment: Alignment.center,
             height: 50,
             width: double.infinity,
-            child: Center(
-              child: Text(
-                item['ans'],
-                style: TextStyle(fontSize: 25, color: Colors.white),
-              ),
+            child: Text(
+              item['ans'],
+              style: TextStyle(fontSize: 25, color: Colors.white),
             ),
           ),
         ),
@@ -97,57 +110,103 @@ class _PlayScreenState extends State<PlayScreen> {
       ),
       body: _selectedQuestion < _question.length
           ? SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Container(
-                    child: Card(
+              child: Card(
+                elevation: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 200,
+                      child: CountDownTimer(),
+                    ),
+                    
+                    Container(
+                      alignment: Alignment.center,
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: Text(
-                          _question[_selectedQuestion]['question'],
-                          style: TextStyle(fontSize: 20, letterSpacing: 1.0),
+                          'Q${_selectedQuestion + 1} ' +
+                              _question[_selectedQuestion]['question'],
+                          style: TextStyle(
+                              fontSize: 20,
+                              letterSpacing: 1.0,
+                              color: Colors.black),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(children: getAnswers),
-                  )
-                ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(children: getAnswers),
+                    )
+                  ],
+                ),
               ),
             )
           : Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    "You Did It. Your Total Point is " + total.toString(),
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RaisedButton(
-                    color: Colors.blue,
-                    onPressed: () {
-                      setState(() {
-                        total = 0;
-                        _selectedQuestion = 0;
-                      });
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 200,
-                      child: Center(
-                        child: Text(
-                          "Play Again!",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  border:
+                                      Border.all(color: Colors.pink, width: 5)),
+                              child: Center(
+                                child: Text(
+                                  "5",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "You Did It. Your Total Point is " +
+                                  total.toString(),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            RaisedButton(
+                              color: Colors.blue,
+                              onPressed: () {
+                                setState(() {
+                                  total = 0;
+                                  _selectedQuestion = 0;
+                                });
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 200,
+                                child: Center(
+                                  child: Text(
+                                    "Play Again!",
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_login/json_user.dart';
 import './components/dashboard.dart';
 import 'dart:convert';
 import 'package:dio/dio.dart';
@@ -27,9 +28,8 @@ class _LoginState extends State<LoginPage> {
 
   static Dio dio = Dio(options);
 
-
+  TextEditingController nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-
   TextEditingController _passwordController = TextEditingController();
 
   Future<dynamic> loginUser(String name, String email, String password) async {
@@ -146,20 +146,20 @@ class _LoginState extends State<LoginPage> {
                        Navigator.of(context).pushNamedAndRemoveUntil(
                           Dashboard.routeName, (Route<dynamic> route) => false);
                     // onTap: () async {
-                      // setState(() => isLoading = true);
-                      // var res = await _loginUser(_nameController.text,
-                      //     _emailController.text, _passwordController.text);
-                      // setState(() => isLoading = false);
+                    //   setState(() => isLoading = true);
+                    //   var res = await loginUser(nameController.text,
+                    //       _emailController.text, _passwordController.text);
+                    //   setState(() => isLoading = false);
 
-                      // JsonUser user = JsonUser.fromJson(res);
+                    //   JsonUser user = JsonUser.fromJson(res);
 
-                      // if (user != null) {
-                      //   Navigator.of(context).push(new MaterialPageRoute(
-                      //       builder: (context) => new Dashboard()));
-                      // } else {
-                      //   Scaffold.of(context).showSnackBar(
-                      //       SnackBar(content: Text("incorrect email")));
-                      // }
+                    //   if (user != null) {
+                    //     Navigator.of(context).push(new MaterialPageRoute(
+                    //         builder: (context) => new Dashboard()));
+                    //   } else {
+                    //     Scaffold.of(context).showSnackBar(
+                    //         SnackBar(content: Text("incorrect email")));
+                    //   }
                     },
                     child: Container(
                       height: 40.0,
