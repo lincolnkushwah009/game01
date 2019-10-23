@@ -75,6 +75,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
         key: _scaffoldKey,
         resizeToAvoidBottomPadding: false,
+        backgroundColor: Colors.white,
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
             Widget>[
           Container(

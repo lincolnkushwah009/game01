@@ -34,8 +34,7 @@ class UserAccountDetail extends StatelessWidget {
                         child: IconButton(
                           color: Colors.white, 
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushNamed(UserAccountDetail.routeName);
+                           
                           },
                           icon: Icon(
                             Icons.arrow_forward_ios,
