@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import '../components/user_account.detail.dart';
 
-
-class Profile extends StatelessWidget {
-  static const routeName = "/profile";
+class UserAccountDetail extends StatelessWidget {
+  static const routeName = "/userAccountDetail";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Profile'),
+          title: Text('Account Details'),
         ),
         body: SingleChildScrollView(
           child: Column(children: [
@@ -30,19 +28,11 @@ class Profile extends StatelessWidget {
                         "George.Micheal",
                         style: TextStyle(color: Colors.white),
                       ),
-                      trailing: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: IconButton(
-                          color: Colors.white, 
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pushNamed(UserAccountDetail.routeName);
-                          },
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.blue,
-                          ),
-                        ),
+                      trailing: IconButton(
+                        onPressed: (){
+                          
+                        },
+                        icon: Icon(Icons.add),
                       ),
                     )),
               ),
@@ -89,9 +79,7 @@ class Profile extends StatelessWidget {
                 }),
               ),
             ),
-            Divider(
-              thickness: 1.0,
-            ),
+            Divider(thickness: 1.0,),
             Container(
               child: Column(
                 children: List.generate(4, (index) {

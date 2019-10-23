@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './components/dashboard.dart';
-import 'json_user.dart';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'dart:async';
@@ -13,6 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginState extends State<LoginPage> {
   static var uri = "http://192.168.1.21:3000";
+  bool isLoading = false;
   static BaseOptions options = BaseOptions(
       baseUrl: uri,
       responseType: ResponseType.plain,
@@ -22,27 +22,25 @@ class _LoginState extends State<LoginPage> {
         if (code >= 200) {
           return true;
         }
+        return false;
       });
 
   static Dio dio = Dio(options);
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  TextEditingController _nameController=TextEditingController();
 
   TextEditingController _emailController = TextEditingController();
 
   TextEditingController _passwordController = TextEditingController();
-  bool _isLoading = false;
 
-  Future<dynamic> _loginUser(String name,String email, String password) async {
+  Future<dynamic> loginUser(String name, String email, String password) async {
     try {
       Options options = Options(
 //        contentType: ContentType.parse('application/json'),
-      );
+          );
 
       Response response = await dio.post('/trivia/users/login',
-          data: {"name":name,"email": email, "password": password}, options: options);
+          data: {"name": name, "email": email, "password": password},
+          options: options);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var responseJson = json.decode(response.data);
@@ -143,20 +141,24 @@ class _LoginState extends State<LoginPage> {
                   ),
                   SizedBox(height: 40.0),
                   GestureDetector(
-                    onTap: () async{
-                      setState(() =>_isLoading = true);
-                      var res = await _loginUser(
-                          _nameController.text,_emailController.text,_passwordController.text
-                      );
-                      setState(()=> _isLoading=false);
+                    onTap:() {
+                       Navigator.of(context).pushNamedAndRemoveUntil(
+                          Dashboard.routeName, (Route<dynamic> route) => false);
+                    // onTap: () async {
+                      // setState(() => isLoading = true);
+                      // var res = await _loginUser(_nameController.text,
+                      //     _emailController.text, _passwordController.text);
+                      // setState(() => isLoading = false);
 
-                      JsonUser user = JsonUser.fromJson(res);
+                      // JsonUser user = JsonUser.fromJson(res);
 
-                      if(user !=null){
-                        Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new Dashboard()));
-                      }else{
-                        Scaffold.of(context).showSnackBar(SnackBar(content: Text("incorrect email")));
-                      }
+                      // if (user != null) {
+                      //   Navigator.of(context).push(new MaterialPageRoute(
+                      //       builder: (context) => new Dashboard()));
+                      // } else {
+                      //   Scaffold.of(context).showSnackBar(
+                      //       SnackBar(content: Text("incorrect email")));
+                      // }
                     },
                     child: Container(
                       height: 40.0,
