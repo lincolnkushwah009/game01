@@ -86,7 +86,7 @@ class _SignupPageState extends State<SignupPage> {
                   child: Text(
                     'Signup',
                     style:
-                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold,color: Colors.black),
                   ),
                 ),
                 Container(
@@ -224,7 +224,7 @@ class _SignupPageState extends State<SignupPage> {
                               child: Text('Sign Up with Facebook',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat')),
+                                      fontFamily: 'Montserrat',color: Colors.black)),
                             )
                           ],
                         ),
@@ -253,7 +253,7 @@ class _SignupPageState extends State<SignupPage> {
                               child: Text('Sign Up with Google',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat')),
+                                      fontFamily: 'Montserrat',color: Colors.black)),
                             )
                           ],
                         ),
@@ -279,7 +279,7 @@ class _SignupPageState extends State<SignupPage> {
                             child: Text('Go Back',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat')),
+                                    fontFamily: 'Montserrat',color: Colors.black)),
                           ),
                         ),
                       ),

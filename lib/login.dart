@@ -78,13 +78,13 @@ class _LoginState extends State<LoginPage> {
                   padding: EdgeInsets.fromLTRB(15.0, 80.0, 0.0, 0.0),
                   child: Text('Hello',
                       style: TextStyle(
-                          fontSize: 80.0, fontWeight: FontWeight.bold)),
+                          fontSize: 80.0, fontWeight: FontWeight.bold,color: Colors.black)),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(16.0, 145.0, 0.0, 0.0),
                   child: Text('There',
                       style: TextStyle(
-                          fontSize: 80.0, fontWeight: FontWeight.bold)),
+                          fontSize: 80.0, fontWeight: FontWeight.bold,color: Colors.black)),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(220.0, 145.0, 0.0, 0.0),
@@ -203,7 +203,7 @@ class _LoginState extends State<LoginPage> {
                             child: Text('Log in with facebook',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat')),
+                                    fontFamily: 'Montserrat',color: Colors.black)),
                           )
                         ],
                       ),
@@ -232,7 +232,7 @@ class _LoginState extends State<LoginPage> {
                             child: Text('Log in with Google',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat')),
+                                    fontFamily: 'Montserrat',color: Colors.black)),
                           )
                         ],
                       ),
@@ -246,7 +246,7 @@ class _LoginState extends State<LoginPage> {
             children: <Widget>[
               Text(
                 'New to this App ?',
-                style: TextStyle(fontFamily: 'Montserrat'),
+                style: TextStyle(fontFamily: 'Montserrat',color: Colors.black),
               ),
               SizedBox(width: 5.0),
               InkWell(
