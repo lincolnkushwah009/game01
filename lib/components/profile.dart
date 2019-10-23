@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/user_account.detail.dart';
 
-
 class Profile extends StatelessWidget {
   static const routeName = "/profile";
   @override
@@ -33,7 +32,7 @@ class Profile extends StatelessWidget {
                       trailing: CircleAvatar(
                         backgroundColor: Colors.white,
                         child: IconButton(
-                          color: Colors.white, 
+                          color: Colors.white,
                           onPressed: () {
                             Navigator.of(context)
                                 .pushNamed(UserAccountDetail.routeName);
