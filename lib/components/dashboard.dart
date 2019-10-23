@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/painting.dart';
 import '../components/categories.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../components/profile.dart';
+//import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Dashboard extends StatefulWidget {
   static const routeName = '/dashboard';
@@ -20,7 +21,12 @@ class _DashboardState extends State<Dashboard> {
         backgroundColor: Colors.black,
         title: Row(
           children: <Widget>[
-            CircleAvatar(),
+            GestureDetector(child: CircleAvatar(),
+              onTap:() {
+                Navigator.of(context).pushNamed(Profile.routeName);
+              },
+
+            ),
             SizedBox(
               width: 5,
             ),
@@ -31,19 +37,14 @@ class _DashboardState extends State<Dashboard> {
       body: ListView(
         children: <Widget>[
           Container(
-
-
             padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-
             child: SizedBox(
-
-
                 height: 200.0,
                 width: 300.0,
                 child: Container(
-                  decoration: BoxDecoration(border: Border.all(color: Colors.green)),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.green)),
                   child: Carousel(
-
                     images: [
                       NetworkImage(
                           'https://cdn3.movieweb.com/i/article/evkgjS87YJyxAttm7AW0s2V6c6Wqj5/738:50/How-To-Train-Your-Dragon-3-Movie-Review.jpg'),
@@ -64,12 +65,8 @@ class _DashboardState extends State<Dashboard> {
             height: 40,
           ),
           Container(
-            child: SpinKitWave(color: Colors.red, type: SpinKitWaveType.start),
-
-          ),
-
-          Container(color:Color.fromRGBO(67, 0, 100, 100),
-              padding:EdgeInsets.fromLTRB(0, 25, 0, 25),
+              color: Color.fromRGBO(67, 0, 100, 100),
+              padding: EdgeInsets.fromLTRB(0, 25, 0, 25),
               height: 180.0,
               child: ListView(
                 padding: EdgeInsets.only(left: 15.0, right: 15.0),
@@ -103,7 +100,7 @@ class _DashboardState extends State<Dashboard> {
                 ],
               )),
           SizedBox(
-            height: 60,
+            height: 40,
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(0, 100, 0, 10),
@@ -116,10 +113,10 @@ class _DashboardState extends State<Dashboard> {
                       child: Center(
                           child: Text(
                         "Play",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
+                        style: TextStyle(color: Colors.white, fontSize: 25),
                       ))),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(Categories.routeName);
+                    Navigator.of(context).pushNamed(Category.routeName);
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20.0))),

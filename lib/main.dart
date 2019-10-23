@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_login/components/play_screen.dart';
 import './components/categories.dart';
 import './components/dashboard.dart';
+//import 'package:flutter/services.dart';
+import 'components/profile.dart';
 import './signup.dart';
 import './login.dart';
 
 
+
 void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -17,7 +22,9 @@ class MyApp extends StatelessWidget {
         LoginPage.routeName:(BuildContext context)=>new LoginPage(),
         SignupPage.routeName: (BuildContext context) => new SignupPage(),
         Dashboard.routeName: (BuildContext context) => new Dashboard(),
-        Categories.routeName:(BuildContext context)=>new Categories()
+        Category.routeName:(BuildContext context)=>new Category(),
+        Profile.routeName:(BuildContext context)=>Profile(),
+        PlayScreen.routeName:(BuildContext context)=>PlayScreen()
       },
       home: new MyHomePage(),
     );
