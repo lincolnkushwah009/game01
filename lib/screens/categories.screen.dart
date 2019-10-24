@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../components/play_screen.dart';
+import '../screens/play.screen.dart';
 
 class Categories extends StatefulWidget {
   static const routeName = '/categories';

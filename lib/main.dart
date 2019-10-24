@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import './components/categories.dart';
-import './components/dashboard.dart';
-import './components/profile.dart';
-import './components/play_screen.dart';
-import './components/user_account.detail.dart';
-import './signup.dart';
-import './login.dart';
+import './screens/categories.screen.dart';
+import './screens/dashboard.screen.dart';
+import './screens/profile.screen.dart';
+import './screens/play.screen.dart';
+import './screens/user_account.detail.screen.dart';
+import './screens/signup.screen.dart';
+import './screens/login.screen.dart';
 
 void main() => runApp(MyApp());
 

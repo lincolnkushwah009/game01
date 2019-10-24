@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/dummy.dart';
+import '../widgets/customTimerPainter.dart';
 
 class CountDownTimer extends StatefulWidget {
   @override

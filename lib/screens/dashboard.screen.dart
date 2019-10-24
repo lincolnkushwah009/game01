@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/painting.dart';
-import '../components/categories.dart';
-import '../components/profile.dart';
+import '../screens/categories.screen.dart';
+import '../screens/profile.screen.dart';
 //import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Dashboard extends StatefulWidget {

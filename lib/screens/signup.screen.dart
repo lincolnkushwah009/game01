@@ -3,8 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:email_validator/email_validator.dart';
-import 'json_user.dart';
-import 'login.dart';
+import '../json_user.dart';
+import 'login.screen.dart';
 
 class SignupPage extends StatefulWidget {
   static const routeName = '/signup';

@@ -1,7 +1,6 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_login/components/timer.dart';
+import '../widgets/countDownTimer.dart';
 
 class PlayScreen extends StatefulWidget {
   static const routeName = "/playScreen";

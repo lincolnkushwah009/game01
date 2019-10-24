@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_login/json_user.dart';
-import './components/dashboard.dart';
+import '../screens/dashboard.screen.dart';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'dart:async';
