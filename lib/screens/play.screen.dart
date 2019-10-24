@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/countDownTimer.dart';
+import 'package:flutter/scheduler.dart';
 
 class PlayScreen extends StatefulWidget {
   static const routeName = "/playScreen";
@@ -58,13 +59,44 @@ class _PlayScreenState extends State<PlayScreen> with TickerProviderStateMixin {
     },
   ];
   int _selectedQuestion = 0;
-
+  AnimationController controller;
   void initState() {
     super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 10),
+    );
+    controller.reverse(from: controller.value == 0.0 ? 1.0 : controller.value);
   }
 
   void setTotal(int point) {
-    total += point;
+    setState(() {
+      SchedulerBinding.instance.addPostFrameCallback((_) => setState(() {
+            controller.reverse(
+                from: controller.value == 0.0 ? 1.0 : controller.value);
+            _selectedQuestion++;
+            total += point;
+          }));
+    });
+  }
+
+  void playAgain() {
+    setState(() {
+      SchedulerBinding.instance.addPostFrameCallback((_) => setState(() {
+            controller.reverse(from: 1.0);
+            total = 0;
+            _selectedQuestion = 0;
+          }));
+    });
+  }
+
+  void changeQuestion() {
+    print("change");
+    SchedulerBinding.instance.addPostFrameCallback((_) => setState(() {
+          controller.reverse(
+              from: controller.value == 0.0 ? 1.0 : controller.value);
+          return _selectedQuestion++;
+        }));
   }
 
   List get getAnswers {
@@ -75,10 +107,8 @@ class _PlayScreenState extends State<PlayScreen> with TickerProviderStateMixin {
         child: RaisedButton(
           color: Colors.blue,
           onPressed: () {
-            setState(() {
-              _selectedQuestion++;
-              setTotal(item['point']);
-            });
+            changeQuestion();
+            setTotal(item['point']);
           },
           child: Container(
             alignment: Alignment.center,
@@ -100,107 +130,109 @@ class _PlayScreenState extends State<PlayScreen> with TickerProviderStateMixin {
       appBar: AppBar(
         title: Text("Play"),
       ),
-      body: _selectedQuestion < _question.length
-          ? SingleChildScrollView(
-              child: Card(
-                elevation: 5,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      height: 200,
-                      child: CountDownTimer(),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'Q${_selectedQuestion + 1} ' +
-                              _question[_selectedQuestion]['question'],
-                          style: TextStyle(
-                              fontSize: 20,
-                              letterSpacing: 1.0,
-                              color: Colors.black),
+      body: Center(
+        child: _selectedQuestion < _question.length
+            ? SingleChildScrollView(
+                child: Card(
+                  elevation: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: 200,
+                        child: CountDownTimer(
+                            questionNo: _selectedQuestion,
+                            changeQuestion: changeQuestion,
+                            controller: controller),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Q${_selectedQuestion + 1} ' +
+                                _question[_selectedQuestion]['question'],
+                            style: TextStyle(
+                                fontSize: 20,
+                                letterSpacing: 1.0,
+                                color: Colors.black),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(children: getAnswers),
-                    )
-                  ],
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(children: getAnswers),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Container(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  border:
-                                      Border.all(color: Colors.pink, width: 5)),
-                              child: Center(
-                                child: Text(
-                                  "5",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 30),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "You Did It. Your Total Point is " +
-                                  total.toString(),
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            RaisedButton(
-                              color: Colors.blue,
-                              onPressed: () {
-                                setState(() {
-                                  total = 0;
-                                  _selectedQuestion = 0;
-                                });
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 200,
+              )
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    border: Border.all(
+                                        color: Colors.pink, width: 5)),
                                 child: Center(
                                   child: Text(
-                                    "Play Again!",
+                                    "5",
                                     style: TextStyle(
-                                        fontSize: 20, color: Colors.white),
+                                        color: Colors.black, fontSize: 30),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "You Did It. Your Total Point is " +
+                                    total.toString(),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              RaisedButton(
+                                color: Colors.blue,
+                                onPressed: () {
+                                  playAgain();
+                                },
+                                child: Container(
+                                  height: 50,
+                                  width: 200,
+                                  child: Center(
+                                    child: Text(
+                                      "Play Again!",
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+      ),
     );
   }
 }
