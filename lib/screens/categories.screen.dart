@@ -45,7 +45,7 @@ class _HomePageState extends State<Categories> {
 
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.of(context).pushNamed(PlayScreen.routeName);
             },
             child: Container(

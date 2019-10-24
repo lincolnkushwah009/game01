@@ -73,26 +73,16 @@ class _LoginState extends State<LoginPage> {
           Container(
             child: Stack(
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.fromLTRB(15.0, 80.0, 0.0, 0.0),
-                  child: Text('Hello',
-                      style: TextStyle(
-                          fontSize: 80.0, fontWeight: FontWeight.bold,color: Colors.black)),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(15.0, 80.0, 0.0, 0.0),
+                    child: Text('SignIn',
+                        style: TextStyle(
+                            fontSize: 80.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black)),
+                  ),
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(16.0, 145.0, 0.0, 0.0),
-                  child: Text('There',
-                      style: TextStyle(
-                          fontSize: 80.0, fontWeight: FontWeight.bold,color: Colors.black)),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(220.0, 145.0, 0.0, 0.0),
-                  child: Text('.',
-                      style: TextStyle(
-                          fontSize: 80.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green)),
-                )
               ],
             ),
           ),
@@ -141,24 +131,24 @@ class _LoginState extends State<LoginPage> {
                   ),
                   SizedBox(height: 40.0),
                   GestureDetector(
-                    onTap:() {
-                       Navigator.of(context).pushNamedAndRemoveUntil(
+                    onTap: () {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
                           Dashboard.routeName, (Route<dynamic> route) => false);
-                    // onTap: () async {
-                    //   setState(() => isLoading = true);
-                    //   var res = await loginUser(nameController.text,
-                    //       _emailController.text, _passwordController.text);
-                    //   setState(() => isLoading = false);
+                      // onTap: () async {
+                      //   setState(() => isLoading = true);
+                      //   var res = await loginUser(nameController.text,
+                      //       _emailController.text, _passwordController.text);
+                      //   setState(() => isLoading = false);
 
-                    //   JsonUser user = JsonUser.fromJson(res);
+                      //   JsonUser user = JsonUser.fromJson(res);
 
-                    //   if (user != null) {
-                    //     Navigator.of(context).push(new MaterialPageRoute(
-                    //         builder: (context) => new Dashboard()));
-                    //   } else {
-                    //     Scaffold.of(context).showSnackBar(
-                    //         SnackBar(content: Text("incorrect email")));
-                    //   }
+                      //   if (user != null) {
+                      //     Navigator.of(context).push(new MaterialPageRoute(
+                      //         builder: (context) => new Dashboard()));
+                      //   } else {
+                      //     Scaffold.of(context).showSnackBar(
+                      //         SnackBar(content: Text("incorrect email")));
+                      //   }
                     },
                     child: Container(
                       height: 40.0,
@@ -202,7 +192,8 @@ class _LoginState extends State<LoginPage> {
                             child: Text('Log in with facebook',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat',color: Colors.black)),
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black)),
                           )
                         ],
                       ),
@@ -231,7 +222,8 @@ class _LoginState extends State<LoginPage> {
                             child: Text('Log in with Google',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat',color: Colors.black)),
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black)),
                           )
                         ],
                       ),
@@ -245,7 +237,7 @@ class _LoginState extends State<LoginPage> {
             children: <Widget>[
               Text(
                 'New to this App ?',
-                style: TextStyle(fontFamily: 'Montserrat',color: Colors.black),
+                style: TextStyle(fontFamily: 'Montserrat', color: Colors.black),
               ),
               SizedBox(width: 5.0),
               InkWell(

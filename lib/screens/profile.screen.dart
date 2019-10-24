@@ -53,7 +53,7 @@ class Profile extends StatelessWidget {
                 child: Card(
                     elevation: 5,
                     color: Colors.blue,
-                    margin: EdgeInsets.only(top: 5,bottom: 5),
+                    margin: EdgeInsets.only(top: 5, bottom: 5),
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -77,7 +77,7 @@ class Profile extends StatelessWidget {
               child: Column(
                 children: List.generate(4, (index) {
                   return Card(
-                    margin: EdgeInsets.only(left: 5,right: 5,bottom: 2),
+                    margin: EdgeInsets.only(left: 5, right: 5, bottom: 2),
                     child: ListTile(
                       leading: CircleAvatar(),
                       title: Text("data"),
@@ -88,12 +88,14 @@ class Profile extends StatelessWidget {
                 }),
               ),
             ),
-            Divider(height: 2,),
+            Divider(
+              height: 2,
+            ),
             Container(
               child: Column(
                 children: List.generate(4, (index) {
                   return Card(
-                    margin: EdgeInsets.only(left: 5,right: 5,bottom: 2),
+                    margin: EdgeInsets.only(left: 5, right: 5, bottom: 2),
                     child: ListTile(
                       leading: CircleAvatar(),
                       title: Text("data"),

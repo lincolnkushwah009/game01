@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:dio/dio.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:email_validator/email_validator.dart';
-import '../json_user.dart';
 import 'login.screen.dart';
+import '../json_user.dart';
 
 class SignupPage extends StatefulWidget {
   static const routeName = '/signup';
@@ -28,14 +28,11 @@ class _SignupPageState extends State<SignupPage> {
         }
         return false;
       });
+
   static Dio dio = Dio(options);
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   TextEditingController _nameController = TextEditingController();
-
   TextEditingController _emailController = TextEditingController();
-
   TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
 
@@ -81,24 +78,18 @@ class _SignupPageState extends State<SignupPage> {
           Container(
             child: Stack(
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.fromLTRB(15.0, 80.0, 0.0, 0.0),
-                  child: Text(
-                    'Signup',
-                    style:
-                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold,color: Colors.black),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(15.0, 80.0, 0.0, 0.0),
+                    child: Text(
+                      'SignUp',
+                      style: TextStyle(
+                          fontSize: 80.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(260.0, 90.0, 0.0, 0.0),
-                  child: Text(
-                    '.',
-                    style: TextStyle(
-                        fontSize: 80.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green),
-                  ),
-                )
               ],
             ),
           ),
@@ -122,8 +113,6 @@ class _SignupPageState extends State<SignupPage> {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                               color: Colors.grey),
-                          // hintText: 'EMAIL',
-                          // hintStyle: ,
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.green))),
                     ),
@@ -224,7 +213,8 @@ class _SignupPageState extends State<SignupPage> {
                               child: Text('Sign Up with Facebook',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat',color: Colors.black)),
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.black)),
                             )
                           ],
                         ),
@@ -253,7 +243,8 @@ class _SignupPageState extends State<SignupPage> {
                               child: Text('Sign Up with Google',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat',color: Colors.black)),
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.black)),
                             )
                           ],
                         ),
@@ -279,7 +270,8 @@ class _SignupPageState extends State<SignupPage> {
                             child: Text('Go Back',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat',color: Colors.black)),
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black)),
                           ),
                         ),
                       ),

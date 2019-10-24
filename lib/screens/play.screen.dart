@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../widgets/countDownTimer.dart';
 
@@ -59,15 +58,9 @@ class _PlayScreenState extends State<PlayScreen> with TickerProviderStateMixin {
     },
   ];
   int _selectedQuestion = 0;
-  AnimationController controller;
-
 
   void initState() {
     super.initState();
-    controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 5),
-    );
   }
 
   void setTotal(int point) {
@@ -118,7 +111,6 @@ class _PlayScreenState extends State<PlayScreen> with TickerProviderStateMixin {
                       height: 200,
                       child: CountDownTimer(),
                     ),
-                    
                     Container(
                       alignment: Alignment.center,
                       child: Padding(
