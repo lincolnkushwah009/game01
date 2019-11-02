@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginState extends State<LoginPage> {
-  static var uri = "http://192.168.1.21:3000";
+  static var uri = "http://192.168.1.75:3000";
   bool isLoading = false;
   static BaseOptions options = BaseOptions(
       baseUrl: uri,

@@ -1,22 +1,21 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../screens/play.screen.dart';
+import 'play.screen.dart';
 
 class Categories extends StatefulWidget {
   static const routeName = '/categories';
   _HomePageState createState() => _HomePageState();
 }
-
 class _HomePageState extends State<Categories> {
   List categoryList;
   Map data;
 
   getQuestions() async {
     http.Response response =
-        await http.get('http://192.168.1.21:3000/trivia/get/category');
+    await http.get('http://192.168.1.144:3000/trivia/get/category');
     data = json.decode(response.body);
-    print(data);
     setState(() {
       categoryList = data['category'];
     });
@@ -38,18 +37,19 @@ class _HomePageState extends State<Categories> {
         title: Text("Categories"),
       ),
       body: GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: 8,
-        // itemCount: categoryList == null ? 0 : categoryList.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemCount: categoryList == null ? 0 : categoryList.length,
 
-        itemBuilder: (BuildContext context, int index) {
+        itemBuilder: (BuildContext context, int index){
+          print("categoryyy");
+          print(categoryList);
+
           return GestureDetector(
-            onTap: () {
+            onTap: (){
               Navigator.of(context).pushNamed(PlayScreen.routeName);
             },
             child: Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(8),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(color: Colors.yellow)),
@@ -72,8 +72,7 @@ class _HomePageState extends State<Categories> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "Cat" + index.toString(),
-                      // "${categoryList[index]["name"]}",
+                      "${categoryList[index]["name"]}",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ),
@@ -81,7 +80,7 @@ class _HomePageState extends State<Categories> {
               ),
             ),
           );
-        },
+        } ,
       ),
     );
   }

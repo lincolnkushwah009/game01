@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.3"
+  dotted_border:
+    dependency: "direct main"
+    description:
+      name: dotted_border
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   email_validator:
     dependency: "direct main"
     description:
@@ -74,6 +81,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  frideos:
+    dependency: "direct main"
+    description:
+      name: frideos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.2"
+  frideos_core:
+    dependency: transitive
+    description:
+      name: frideos_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.4"
   http:
     dependency: "direct main"
     description:
@@ -109,6 +130,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.4"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   pedantic:
     dependency: transitive
     description:
@@ -123,6 +158,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.21.0"
+  shared_preferences:
+    dependency: transitive
+    description:
+      name: shared_preferences
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.4+3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -186,4 +235,4 @@ packages:
     version: "2.0.8"
 sdks:
   dart: ">2.4.0 <3.0.0"
-  flutter: ">=1.2.0 <2.0.0"
+  flutter: ">=1.6.7 <2.0.0"

@@ -7,6 +7,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromRGBO(15, 0, 30, 100),
           title: Text('Profile'),
         ),
         body: SingleChildScrollView(
@@ -14,11 +15,11 @@ class Profile extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 5, right: 5),
               child: Container(
-                height: 80,
+                height: 70,
                 child: Card(
                     elevation: 5,
-                    color: Colors.blue,
-                    margin: EdgeInsets.only(top: 5),
+                    color: Color.fromRGBO(50, 0, 74, 100),
+                    margin: EdgeInsets.only(top: 0),
                     child: ListTile(
                       leading: CircleAvatar(),
                       title: Text(
@@ -39,7 +40,7 @@ class Profile extends StatelessWidget {
                           },
                           icon: Icon(
                             Icons.arrow_forward_ios,
-                            color: Colors.blue,
+                            color: Colors.blueGrey,
                           ),
                         ),
                       ),
@@ -47,13 +48,18 @@ class Profile extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
+              padding:
+                  EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
               child: Container(
                 height: 80,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.greenAccent)),
                 child: Card(
-                    elevation: 5,
-                    color: Colors.blue,
-                    margin: EdgeInsets.only(top: 5, bottom: 5),
+                    elevation: 1,
+                    color: Color.fromRGBO(50, 0, 74, 100),
+                    margin:
+                        EdgeInsets.only(top: 0, bottom: 0, right: 0, left: 0),
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -65,7 +71,7 @@ class Profile extends StatelessWidget {
                           )),
                           Container(
                               child: Text(
-                            "234",
+                            "694",
                             style: TextStyle(fontSize: 35, color: Colors.white),
                           ))
                         ],
@@ -73,23 +79,57 @@ class Profile extends StatelessWidget {
                     )),
               ),
             ),
+//        ListView(
+//          children: <Widget>[
+//            ListTile(
+//              leading: Icon(Icons.map),
+//              title: Text('Map'),
+//            ),
+//            ListTile(
+//              leading: Icon(Icons.photo_album),
+//              title: Text('Album'),
+//            ),
+//            ListTile(
+//              leading: Icon(Icons.phone),
+//              title: Text('Phone'),
+//            ),
+//          ],
+//        ),
+
             Container(
-              child: Column(
-                children: List.generate(4, (index) {
-                  return Card(
-                    margin: EdgeInsets.only(left: 5, right: 5, bottom: 2),
-                    child: ListTile(
-                      leading: CircleAvatar(),
-                      title: Text("data"),
-                      subtitle: Text("SDFSDF"),
-                      trailing: Icon(Icons.add_alert),
+              child: Card(
+                  elevation: 5,
+                  color: Color.fromRGBO(50, 0, 74, 100),
+                  margin: EdgeInsets.only(top: 0),
+                  child: ListTile(
+                    leading: Container(
+                        height: 30,
+                        width: 30,
+                        child: Image.asset("assets/cash.png")),
+                    title: Text(
+                      "Total Coins Earned",
+                      style: TextStyle(color: Colors.white),
                     ),
-                  );
-                }),
-              ),
+                    trailing: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: IconButton(
+                        onPressed: (){
+
+                        },
+
+                        icon: Icon(
+                          Icons.monetization_on,
+                          color: Colors.yellowAccent,
+
+
+                        ),
+                      ),
+                    ),
+                  )),
+
             ),
             Divider(
-              height: 2,
+              height: 5,
             ),
             Container(
               child: Column(
